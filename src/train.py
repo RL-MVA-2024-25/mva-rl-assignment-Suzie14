@@ -111,7 +111,7 @@ class ProjectAgent:
 
     def decay_exploration(self, step):
         if step > 10000:
-            self.exploration_rate = 0.01
+            self.exploration_rate = max(0.01, self.exploration_rate - 10**(-4))
 
     def save(self, filepath):
         torch.save(self.q_network.state_dict(), filepath)
